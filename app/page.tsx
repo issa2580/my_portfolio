@@ -1,15 +1,21 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+'use client'
+import Body from "@/components/Body/Body"
+import Navbar from "@/components/Navbar.tsx/Navbar"
+import { Box } from "@mui/material"
 
 export default function Home() {
   return (
 
-    <div>
-
-    </div>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+        backgroundColor: '#0a192f',
+      }}>
+        <Navbar />
+        <Body />
+    </Box>
 
   )
 }
