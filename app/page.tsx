@@ -20,16 +20,45 @@ export default function Home() {
     minHeight: '100vh',
   }
 
-  const [index, setIndex] = useState(0);
-  
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setIndex(prevIndex => (prevIndex + 1) % images.length);
-      }, 6000);
-      return () => clearInterval(interval);
-    }, []);
+  const fadeInOut = {
+    animationName: '$fadeInOut',
+    animationDuration: '1s',
+    animationTimingFunction: 'linear',
 
-    const backgroundImageStyle = { backgroundImage: `url(${images[index]})` };
+  '@keyframes fadeInOut': {
+    '0%': {
+      opacity: 0,
+      transform: 'translateY(5px)',
+    },
+    '50%': {
+      opacity: 1,
+      transform: 'translateY(0)',
+    },
+    '100%': {
+      opacity: 0,
+      transform: 'translateY(-5px)',
+    },
+  }
+  }
+
+  const [index, setIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setIndex(prevIndex => (prevIndex + 1) % images.length);
+        setIsAnimating(false);
+      }, 1000);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const backgroundImageStyle = {
+    backgroundImage: `url(${images[index]})`,
+    animation: isAnimating ? `${{...fadeInOut}} 1s linear` : '',
+  };
 
     return (
       <Box sx={{...bg}} style={backgroundImageStyle}>
