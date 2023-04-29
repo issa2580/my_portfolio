@@ -5,9 +5,10 @@ import Body from "@/components/Body/Body"
 import Navbar from "@/components/Navbar.tsx/Navbar"
 
 const images = [
-  '/images/tst1.jpg',
-  '/images/tst2.jpg',
   '/images/tst3.jpg',
+  '/images/pic1.svg',
+  '/images/pic2.svg',
+  '/images/pic3.svg',
 ];
 
 export default function Home() {
